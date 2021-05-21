@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import ltd.newbee.mall.controller.vo.NewBeeMallOrderDetailVO;
 import ltd.newbee.mall.controller.vo.NewBeeMallOrderItemVO;
 import ltd.newbee.mall.controller.vo.NewBeeMallShoppingCartItemVO;
@@ -18,7 +19,7 @@ import ltd.newbee.mall.util.PageResult;
 
 import java.util.List;
 
-public interface NewBeeMallOrderService {
+public interface NewBeeMallOrderService extends IService<NewBeeMallOrder> {
     /**
      * 后台分页
      *
@@ -114,4 +115,6 @@ public interface NewBeeMallOrderService {
     String paySuccess(String orderNo, int payType);
 
     List<NewBeeMallOrderItemVO> getOrderItems(Long id);
+
+    void updateByPrimaryKeySelective(NewBeeMallOrder newBeeMallOrder);
 }

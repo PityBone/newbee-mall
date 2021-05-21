@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ltd.newbee.mall.common.*;
 import ltd.newbee.mall.controller.vo.*;
 import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
@@ -29,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -36,9 +38,9 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 
 @Service
-public class NewBeeMallOrderServiceImpl implements NewBeeMallOrderService {
+public class NewBeeMallOrderServiceImpl extends ServiceImpl<NewBeeMallOrderMapper, NewBeeMallOrder> implements NewBeeMallOrderService {
 
-    @Autowired
+    @Resource
     private NewBeeMallOrderMapper newBeeMallOrderMapper;
     @Autowired
     private NewBeeMallOrderItemMapper newBeeMallOrderItemMapper;
@@ -402,5 +404,10 @@ public class NewBeeMallOrderServiceImpl implements NewBeeMallOrderService {
             }
         }
         return null;
+    }
+
+    @Override
+    public void updateByPrimaryKeySelective(NewBeeMallOrder newBeeMallOrder) {
+        newBeeMallOrderMapper.updateByPrimaryKeySelective(newBeeMallOrder);
     }
 }

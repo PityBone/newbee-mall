@@ -12,13 +12,14 @@
         <result column="order_status" jdbcType="TINYINT" property="orderStatus"/>
         <result column="extra_info" jdbcType="VARCHAR" property="extraInfo"/>
         <result column="user_address" jdbcType="VARCHAR" property="userAddress"/>
+        <result column="order_desc" jdbcType="VARCHAR" property="orderDesc"/>
         <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
     <sql id="Base_Column_List">
     order_id, order_no, user_id, total_price, pay_status, pay_type, pay_time, order_status,
-    extra_info, user_name, user_phone, user_address, is_deleted, create_time, update_time
+    extra_info, user_name, user_phone, user_address, order_desc, is_deleted, create_time, update_time
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
@@ -104,7 +105,7 @@
     update tb_newbee_mall_order set is_deleted=1
     where order_id = #{orderId,jdbcType=BIGINT} and is_deleted=0
   </update>
-    <insert id="insert" parameterType="ltd.newbee.mall.entity.NewBeeMallOrder">
+    <insert id="insertOrder" parameterType="ltd.newbee.mall.entity.NewBeeMallOrder">
     insert into tb_newbee_mall_order (order_id, order_no, user_id, 
       total_price, pay_status, pay_type, 
       pay_time, order_status, extra_info, 
